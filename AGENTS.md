@@ -4,6 +4,7 @@ Repository: `@jeffreyjyz/opencode-session-dir` — an opencode v2 plugin that bi
 extra working directories to a single session, durably across restarts. Its
 behaviour was **inspired by** `opencode-add-dir` (0xkuze), which is a *reference
 only* — no code is shared or copied, and that repository is never edited here.
+A read-only clone for reference lives at `~/dev/resources/add-dir-opencode`.
 Sits beside `cmduse`, `oc-cmd-compare` (`mpc`), `reqshape`,
 `opencode-context` and `opencode-shell-rc` in `~/dev/cmdcode-tools/`.
 
