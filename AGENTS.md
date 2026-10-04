@@ -80,7 +80,18 @@ Publishing from this account must go through `npm stage publish` + the user's
 `npm stage approve` — a bare `npm publish` leaves ghost versions (see
 `cmduse/AGENTS.md`). Note that `npm stage publish` leaves a `0.0.0-stage` version
 in the packument; it is the staging placeholder, not a ghost. Verify with the
-raw packument, not `npm view` (its cache can lag). After a publish, opencode's
+raw packument, not `npm view` (its cache can lag).
+
+**A brand-new scoped package also goes through npm's automated review.** During
+it, `npm stage approve` returns `E409 ... can't be approved yet because
+automated review hasn't finished. Try again in a few minutes`, and the raw
+packument `404`s — even `npm stage list` shows nothing and `npm stage view <id>`
+says "staged version not found", which looks exactly like a lost stage. The
+tarball URL already `200`s while the metadata does not. Do **not** re-stage: that
+fails with `E409 Cannot stage previously published version "<ver>"`. Wait a few
+minutes and re-check the raw packument; it appears as `latest` (with a
+`0.0.0-stage` placeholder alongside) once review and propagation finish. First
+hit took ~5 minutes on 0.1.0. After a publish, opencode's
 per-package install cache can lag npm: `npm cache clean`, remove
 `~/.cache/opencode/npm/@jeffreyjyz/opencode-session-dir@latest`, then the user
 restarts. **Never restart or reload opencode yourself.**
